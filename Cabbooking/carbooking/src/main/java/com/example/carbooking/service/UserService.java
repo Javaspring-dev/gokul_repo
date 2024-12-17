@@ -13,6 +13,8 @@ import java.util.Optional;
 public class UserService {
     @Autowired
     private UserRepository userRepository;
+
+
     public UserEntity create(UserEntity userEntity) {
         Optional<UserEntity> customerid = userRepository.findByCustomerid(userEntity.getCustomerid());
         if (customerid.isPresent()) {

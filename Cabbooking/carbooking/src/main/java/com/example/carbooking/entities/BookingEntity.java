@@ -1,5 +1,6 @@
 package com.example.carbooking.entities;
 
+import com.fasterxml.jackson.databind.annotation.JsonAppend;
 import jakarta.persistence.*;
 
 @Entity
@@ -10,10 +11,25 @@ public class BookingEntity {
     private int bookingid;
     private int carid;
     private int userid;
-    private int starttime;
-    private int endtime;
+    private String starttime;
+    private String endtime;
     private String longitude;
     private String latitude;
+
+    @ManyToOne
+    @JoinColumn(name = "userid", referencedColumnName = "customerid", insertable = false,updatable = false)
+    private UserEntity userEntity;
+
+
+    public UserEntity getUserEntity() {
+        return userEntity;
+    }
+
+    public void setUserEntity(UserEntity userEntity) {
+        this.userEntity = userEntity;
+    }
+
+
 
     public int getBookingid() {
         return bookingid;
@@ -39,19 +55,19 @@ public class BookingEntity {
         this.userid = userid;
     }
 
-    public int getStarttime() {
+    public String getStarttime() {
         return starttime;
     }
 
-    public void setStarttime(int starttime) {
+    public void setStarttime(String starttime) {
         this.starttime = starttime;
     }
 
-    public int getEndtime() {
+    public String getEndtime() {
         return endtime;
     }
 
-    public void setEndtime(int endtime) {
+    public void setEndtime(String endtime) {
         this.endtime = endtime;
     }
 
