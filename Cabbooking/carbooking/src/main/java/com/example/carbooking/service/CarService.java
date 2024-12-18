@@ -40,4 +40,14 @@ public class CarService {
         return bookingRepository.findByCarid(carid);
 
     }
+    public boolean UpdateCarAvabality(Long carid){
+        Optional<CarEntity> carDetails = carRepository.findById(carid);
+        if (carDetails.isPresent()){
+            CarEntity carEntity = carDetails.get();
+            carEntity.setAvailability(!carEntity.isAvailability());
+            carRepository.save(carEntity);
+            return true;
+        }
+        return false;
+    }
 }

@@ -16,21 +16,6 @@ public class BookingEntity {
     private String longitude;
     private String latitude;
 
-    @ManyToOne
-    @JoinColumn(name = "userid", referencedColumnName = "customerid", insertable = false,updatable = false)
-    private UserEntity userEntity;
-
-
-    public UserEntity getUserEntity() {
-        return userEntity;
-    }
-
-    public void setUserEntity(UserEntity userEntity) {
-        this.userEntity = userEntity;
-    }
-
-
-
     public int getBookingid() {
         return bookingid;
     }

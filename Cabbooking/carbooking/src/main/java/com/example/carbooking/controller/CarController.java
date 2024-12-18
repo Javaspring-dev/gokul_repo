@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/car")
@@ -36,5 +37,13 @@ public class CarController {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+    @PutMapping("/accept")
+    public ResponseEntity<String> acceptRide(@RequestParam Long carid){
+        boolean isUpdate = carService.UpdateCarAvabality(carid);
+        if (isUpdate){
+            return ResponseEntity.ok("Ride has Confirmed");
+        }
+        return ResponseEntity.notFound().build();
     }
 }
